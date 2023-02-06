@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div class="questions">
+      <p>Mario needs your help with this race, princess peach is still in the clutches of Bowser!</p>
+      <br><br>
+      <p id="question1" class="typewriter">What is the definition of forensics?</p>
+      <br><br>
+      <input type="text" id="answer1">
+      <br><br>
+      <p id="question2" class="typewriter" style="display: none">What type of attack is sql injection?</p>
+      <br><br>
+      <input type="text" id="answer2" style="display: none">
+      <br><br>
+      <p id="question3" class="typewriter" style="display: none">What is the method to view source code of a web application?</p>
+      <br><br>
+      <input type="text" id="answer3" style="display: none">
+    </div>
+    <input type="submit" value="Submit" onclick="checkAnswer()">
+  </body>
+  <script>
+    let questions = [
+      {
+        question: "What is the definition of forensics?",
+        answer: "contamination, spoliation and loss of evidence"
+      },
+      {
+        question: "What type of attack is sql injection?",
+        answer: "cyber"
+      },
+      {
+        question: "What is the method to view source code of a web application?",
+        answer: "code inspection"
+      },
+    ];
+    let currentQuestion = 0;
+    let score = 0;
+    document.querySelector("#question1").textContent = questions[currentQuestion].question;
+    document.querySelector("#answer1").focus();
+
+    function checkAnswer() {
+      let userAnswer = document.querySelector("#answer" + (currentQuestion + 1)).value;
+      if (userAnswer === questions[currentQuestion].answer) {
+        score++;
+      }
+      if (currentQuestion === questions.length - 1) {
+        // Quiz is over
+        if (score === questions.length) {
+          // User won
+          document.body.innerHTML = '<img src="congrats.gif" alt="You Won!"><p>https://drive.google.com/file/d/1Hwo7y_XH1sZQXVfwntLYUb99ufE7LGFo/view?usp=sharing</p>';
+        } else {
+          alert("Quiz Over! You scored " + score + " out of " + questions.length + " questions.");
+        }
+        return;
+      }
+      currentQuestion++;
+      document.querySelector("#question" + (currentQuestion + 1)).style.display = "block";
+      document.querySelector("#answer" + (currentQuestion + 1)).style.display = "block";
+      document.querySelector("#answer" + (currentQuestion + 1)).focus();
+    }
+  </script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
